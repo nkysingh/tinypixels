@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiny Pixels - Free AI Baby Prompts & Photography</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #ffeef8 0%, #fff5e6 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .instagram-btn {
+            background: white;
+            color: #ff6b9d;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .instagram-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #ffd1dc 0%, #ffb6c1 50%, #ffc9de 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '✨';
+            position: absolute;
+            font-size: 100px;
+            opacity: 0.1;
+            top: 20px;
+            left: 10%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '🎨';
+            position: absolute;
+            font-size: 80px;
+            opacity: 0.1;
+            bottom: 40px;
+            right: 10%;
+            animation: float 5s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #c06c84;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.5);
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            color: #555;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 20px 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: bold;
+            color: #ff6b9d;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+            text-transform: uppercase;
+        }
+
+        /* Featured Download Section */
+        .featured-download {
+            padding: 60px 20px;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: #c06c84;
+        }
+
+        .download-card {
+            background: linear-gradient(135deg, #fff 0%, #ffeef8 100%);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+            border: 3px solid #ff6b9d;
+        }
+
+        .download-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #ff6b9d;
+        }
+
+        .download-card p {
+            margin-bottom: 25px;
+            color: #666;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%);
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 18px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255,107,157,0.4);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(255,107,157,0.6);
+        }
+
+        /* Prompt Archive */
+        .prompt-archive {
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #ffeef8 0%, #fff5e6 100%);
+        }
+
+        .prompts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .prompt-item {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .prompt-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .prompt-item h4 {
+            color: #ff6b9d;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .prompt-item p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .prompt-download {
+            display: inline-block;
+            background: #ff6b9d;
+            color: white;
+            padding: 10px 25px;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .prompt-download:hover {
+            background: #c06c84;
+        }
+
+        /* About Section */
+        .about {
+            padding: 60px 20px;
+            background: white;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .topics {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .topic-tag {
+            background: linear-gradient(135deg, #ffd1dc 0%, #ffb6c1 100%);
+            color: #c06c84;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* Footer */
+        footer {
+            background: #c06c84;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        footer a {
+            color: #ffd1dc;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .stats {
+                gap: 20px;
+            }
+
+            .stat-item {
+                padding: 15px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">✨ Tiny Pixels</div>
+                <a href="https://www.instagram.com/anvika.world/" target="_blank" class="instagram-btn">📸 Follow on Instagram</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Free AI Baby Prompts & Photography Magic ✨</h1>
+            <p>Create stunning AI-generated baby photos, videos & art with our viral prompts!</p>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">100K+</div>
+                    <div class="stat-label">Viral Views</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">600+</div>
+                    <div class="stat-label">Downloads</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">FREE</div>
+                    <div class="stat-label">All Prompts</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Download -->
+    <section class="featured-download">
+        <div class="container">
+            <h2 class="section-title">🎁 Latest AI Prompts</h2>
+            <div class="download-card">
+                <h3>🔥 Viral Baby AI Prompts Pack</h3>
+                <p>The exact prompts that got us 100K+ views! Create magical baby photos, dreamy scenes, and adorable AI-generated content. Perfect for parents, content creators, and photography enthusiasts.</p>
+                <a href="#" class="download-btn" onclick="alert('Add your download link here!'); return false;">⬇️ Download Now (FREE)</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prompt Archive -->
+    <section class="prompt-archive">
+        <div class="container">
+            <h2 class="section-title">📚 Prompt Archive</h2>
+            <div class="prompts-grid">
+                <div class="prompt-item">
+                    <h4>🌸 Dreamy Baby Scenes</h4>
+                    <p>Create ethereal, dreamy baby photography with soft lighting and magical backgrounds.</p>
+                    <a href="#" class="prompt-download" onclick="alert('Add download link'); return false;">Download</a>
+                </div>
+                
+                <div class="prompt-item">
+                    <h4>🎨 Artistic Baby Portraits</h4>
+                    <p>Generate stunning artistic portraits with various painting styles and effects.</p>
+                    <a href="#" class="prompt-download" onclick="alert('Add download link'); return false;">Download</a>
+                </div>
+                
+                <div class="prompt-item">
+                    <h4>🦋 Fantasy Baby Worlds</h4>
+                    <p>Transport your baby into magical fantasy settings with whimsical elements.</p>
+                    <a href="#" class="prompt-download" onclick="alert('Add download link'); return false;">Download</a>
+                </div>
+                
+                <div class="prompt-item">
+                    <h4>🌙 Seasonal Baby Themes</h4>
+                    <p>Prompts for all seasons - spring flowers, summer beaches, autumn leaves, winter wonderlands.</p>
+                    <a href="#" class="prompt-download" onclick="alert('Add download link'); return false;">Download</a>
+                </div>
+                
+                <div class="prompt-item">
+                    <h4>👶 Milestone Celebrations</h4>
+                    <p>Special prompts for birthdays, first steps, and precious milestone moments.</p>
+                    <a href="#" class="prompt-download" onclick="alert('Add download link'); return false;">Download</a>
+                </div>
+                
+                <div class="prompt-item">
+                    <h4>🎭 Character Costumes</h4>
+                    <p>Fun character-themed prompts - superheroes, princesses, animals and more!</p>
+                    <a href="#" class="prompt-download" onclick="alert('Add download link'); return false;">Download</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <h2 class="section-title">💕 About Tiny Pixels</h2>
+            <div class="about-content">
+                <p>Welcome to Tiny Pixels! We're passionate about capturing precious baby moments through the magic of photography, videography, and AI art. What started as documenting our little one's journey has grown into a community of parents and creators.</p>
+                
+                <p>Our viral reels have reached over 100K views on Instagram (@anvika.world), and we're thrilled to share the AI prompts that made it possible - completely free! Join our growing community and let's create beautiful memories together.</p>
+                
+                <div class="topics">
+                    <span class="topic-tag">👶 Baby Photography</span>
+                    <span class="topic-tag">🎥 Videography</span>
+                    <span class="topic-tag">👪 Parenting</span>
+                    <span class="topic-tag">🤱 Motherhood</span>
+                    <span class="topic-tag">🤖 AI Baby Art</span>
+                    <span class="topic-tag">✨ Creative Content</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>✨ Tiny Pixels - Creating Magic, One Prompt at a Time ✨</p>
+            <p>Follow us on <a href="https://www.instagram.com/anvika.world/" target="_blank">Instagram @anvika.world</a></p>
+            <p style="margin-top: 20px; font-size: 14px; opacity: 0.8;">© 2025 Tiny Pixels | All prompts are free to use for personal and commercial projects.</p>
+        </div>
+    </footer>
+</body>
+</html>
